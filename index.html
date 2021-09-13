@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="Components/base.js"></script>
+    </head>
+    <body>
+        <a-scene background="color:#026F90" >
+            <a-entity id="look" look-controls camera position="100 200 20"></a-entity>
+            <!-------------------------------------------------------Assest--Management---------------------------------------------->
+            <a-assets timeout = "100000000">
+                <a-asset-item 
+                    id="furnace-build" 
+                    src="./Models/furnace/scene.gltf"
+                ></a-asset-item>
+
+                <a-asset-item
+                    id="diver"
+                    src="./Models/Scuba-diver/scene.gltf"
+                ></a-asset-item>
+
+                <a-asset-item
+                    id="turtle"
+                    src="./Models/Turtle/scene.gltf"
+                ></a-asset-item>
+            </a-assets>
+
+            <a-entity >
+                <a-entity position="0 1 0" rotation="0 55 0" scale="2 2 2" gltf-model="#furnace-build" shadow="cast:true;">
+                </a-entity>
+            </a-entity>
+
+            <a-entity
+            id="plane_model"
+            gltf-model="#diver"
+            position="0 0 15"
+            scale="1 1 1"
+            rotation="0 90 0"
+            plane-rotation-reader   
+            dynamic-body="mass:0"
+            game>
+        </a-entity>
+            
+
+        </a-scene>
+    </body>
+</html>
