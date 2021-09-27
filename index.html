@@ -2,14 +2,17 @@
 <html>
     <head>
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-        <script src="Components/base.js"></script>
+        <script src="Components/rotation.js"></script>
     </head>
     <body>
         <a-scene background="color:#026F90" >
-            <a-entity id="look" look-controls camera position="100 200 20"></a-entity>
+            
             <!-------------------------------------------------------Assest--Management---------------------------------------------->
-            <a-assets timeout = "100000000">
+            <a-assets>
+                <a-asset-item id="island" src="assets/island/scene.gltf"></a-asset-item> 
                 <a-asset-item 
                     id="furnace-build" 
                     src="./Models/furnace/scene.gltf"
@@ -26,20 +29,37 @@
                 ></a-asset-item>
             </a-assets>
 
-            <a-entity >
-                <a-entity position="0 1 0" rotation="0 55 0" scale="2 2 2" gltf-model="#furnace-build" shadow="cast:true;">
-                </a-entity>
-            </a-entity>
+            <a-sky
+            geometry="primitive: sphere;"
+            material="shader: gradient; bottomColor: #00009e; topColor:109 205 227;offset: 0.0001;"
+            radius="100"
+            theta-length="180"
+            side="double"
+            animation="property: rotation; to: 0 300 0; easing:linear; loop: true; dur: 500000"
+          >
+          <a-entity
+          gltf-model="#island"
+          scale="1 1 1"
+          position="0 -15 -40"
+        ></a-entity>
+
+        <a-entity
+          gltf-model="#turtle"
+          scale="0.5 0.5 0.5"
+          position="0 -30 0"
+          rotation="0 90 0"
+        ></a-entity>
+
+          
+        </a-sky>
 
             <a-entity
-            id="plane_model"
             gltf-model="#diver"
-            position="0 0 15"
-            scale="1 1 1"
-            rotation="0 90 0"
-            plane-rotation-reader   
-            dynamic-body="mass:0"
-            game>
+            scale="3 3 3"
+            position="5 0 -5"
+            rotation="0 90 -20"        
+            diver-rotation-reader
+          >
         </a-entity>
             
 
